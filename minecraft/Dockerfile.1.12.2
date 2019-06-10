@@ -18,4 +18,7 @@ RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eu
 
 COPY server.properties ./
 
+# sample of mods addition
+RUN wget https://media.forgecdn.net/files/2714/302/journeymap-1.12.2-5.5.5b7.jar -P ./mods
+
 CMD java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
