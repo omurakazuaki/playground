@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  minecraft:
+    image: minecraft:1.14.2
+    build:
+      context: ./minecraft
+      dockerfile: Dockerfile.1.14.2
+    ports:
+      - 25565:25565
+    volumes:
+      - ./minecraft/world/1:/minecraft/world
+      - ./minecraft/logs/1:/minecraft/logs
+
+  minecraft2:
+    image: minecraft:1.12.2
+    build:
+      context: ./minecraft
+      dockerfile: Dockerfile.1.12.2
+    ports:
+      - 25566:25565
+    volumes:
+      - ./minecraft/world/2:/minecraft/world
+      - ./minecraft/logs/2:/minecraft/logs

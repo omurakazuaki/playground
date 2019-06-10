@@ -1,0 +1,21 @@
+FROM java:8-jdk-alpine
+
+USER root
+
+RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl
+
+RUN mkdir -m 777 -p /minecraft/data
+
+WORKDIR /minecraft
+
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2838/forge-1.12.2-14.23.5.2838-installer.jar
+
+RUN java -jar ./forge-1.12.2-14.23.5.2838-installer.jar --installServer
+
+RUN java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
+
+RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eula.txt
+
+COPY server.properties ./
+
+CMD java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui

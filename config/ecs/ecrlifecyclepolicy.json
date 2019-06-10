@@ -1,0 +1,16 @@
+{
+  "rules": [
+    {
+      "action": {
+        "type": "expire"
+      },
+      "selection": {
+        "countType": "imageCountMoreThan",
+        "countNumber": 1,
+        "tagStatus": "untagged"
+      },
+      "description": "Delete old image",
+      "rulePriority": 1
+    }
+  ]
+}
