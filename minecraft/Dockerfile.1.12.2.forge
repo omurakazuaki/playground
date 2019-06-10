@@ -18,6 +18,8 @@ RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eu
 
 COPY server.properties ./
 
+COPY ops.txt ./
+
 # sample of mods addition
 RUN wget https://media.forgecdn.net/files/2714/302/journeymap-1.12.2-5.5.5b7.jar -P ./mods
 

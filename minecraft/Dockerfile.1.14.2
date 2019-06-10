@@ -17,4 +17,6 @@ RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eu
 
 COPY server.properties ./
 
+COPY ops.txt ./
+
 CMD java -Xmx1024M -Xms1024M -jar ./server.jar nogui

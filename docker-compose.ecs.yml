@@ -20,7 +20,7 @@ services:
       - /minecraft/logs/1:/minecraft/logs
 
   minecraft2:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/minecraft:1.12.2
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/minecraft:1.12.2.forge
     ports:
       - 25566:25565
     volumes:

@@ -26,5 +26,5 @@ fi
 
 
 echo "### Push ${image} to ECR ###"
-ecs-cli push ${image}:1.12.2
+ecs-cli push ${image}:1.12.2.forge
 ecs-cli push ${image}:1.14.2

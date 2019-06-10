@@ -14,10 +14,10 @@ services:
       - ./minecraft/logs/1:/minecraft/logs
 
   minecraft2:
-    image: minecraft:1.12.2
+    image: minecraft:1.12.2.forge
     build:
       context: ./minecraft
-      dockerfile: Dockerfile.1.12.2
+      dockerfile: Dockerfile.1.12.2.forge
     ports:
       - 25566:25565
     volumes:
