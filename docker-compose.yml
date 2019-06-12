@@ -13,7 +13,7 @@ services:
       - ./minecraft/world/1:/minecraft/world
       - ./minecraft/logs/1:/minecraft/logs
 
-  minecraft2:
+  minecraft-forge:
     image: minecraft:1.12.2.forge
     build:
       context: ./minecraft
@@ -23,3 +23,14 @@ services:
     volumes:
       - ./minecraft/world/2:/minecraft/world
       - ./minecraft/logs/2:/minecraft/logs
+
+  minecraft-fabric:
+    image: minecraft:1.14.2.fabric
+    build:
+      context: ./minecraft
+      dockerfile: Dockerfile.1.14.2.fabric
+    ports:
+      - 25565:25565
+    volumes:
+      - ./minecraft/world/3:/minecraft/world
+      - ./minecraft/logs/3:/minecraft/logs
