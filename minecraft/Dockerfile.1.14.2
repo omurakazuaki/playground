@@ -1,12 +1,12 @@
 FROM java:8-jdk-alpine
 
-RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl bash
+RUN apk update && apk add bash
 
 RUN mkdir -p /minecraft/data
 
 WORKDIR /minecraft
 
-RUN wget https://launcher.mojang.com/v1/objects/808be3869e2ca6b62378f9f4b33c946621620019/server.jar
+ADD https://launcher.mojang.com/v1/objects/808be3869e2ca6b62378f9f4b33c946621620019/server.jar ./
 
 RUN java -Xmx1024M -Xms1024M -jar ./server.jar nogui
 

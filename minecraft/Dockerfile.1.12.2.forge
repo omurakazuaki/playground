@@ -1,14 +1,14 @@
 FROM java:8-jdk-alpine
 
-RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl bash
+RUN apk update && apk add bash
 
 RUN mkdir -p /minecraft/data
 
 WORKDIR /minecraft
 
-RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2838/forge-1.12.2-14.23.5.2838-installer.jar
+ADD https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2838/forge-1.12.2-14.23.5.2838-installer.jar ./forge-installer.jar
 
-RUN java -jar ./forge-1.12.2-14.23.5.2838-installer.jar --installServer
+RUN java -jar ./forge-installer.jar --installServer
 
 RUN java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
 
@@ -19,6 +19,6 @@ COPY server.properties ./
 COPY ops.txt ./
 
 # sample of mods addition
-RUN wget https://media.forgecdn.net/files/2714/302/journeymap-1.12.2-5.5.5b7.jar -P ./mods
+ADD https://media.forgecdn.net/files/2714/302/journeymap-1.12.2-5.5.5b7.jar ./mods
 
 CMD java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
