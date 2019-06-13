@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  build-docker-image:
+
+    machine:
+      docker_layer_caching: true
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+      - run:
+          name: Create ops.txt
+          command: cp minecraft/ops.txt.sample minecraft/ops.txt
+      - run:
+          name: Build minecraft images
+          command: docker-compose build minecraft
+      - run:
+          name: Build minecraft-forge images
+          command: docker-compose build minecraft-forge
+      - run:
+          name: Build minecraft-fabric images
+          command: docker-compose build minecraft-fabric
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-docker-image
