@@ -1,11 +1,8 @@
 FROM java:8-jdk-alpine
 
-USER root
+RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl bash
 
-RUN apk update && apk add ca-certificates && update-ca-certificates && apk add openssl
-
-RUN mkdir -m 777 -p /minecraft/data
-
+RUN mkdir -p /minecraft/data
 
 WORKDIR /minecraft
 

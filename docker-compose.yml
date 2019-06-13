@@ -32,5 +32,5 @@ services:
     ports:
       - 25565:25565
     volumes:
-      - ./minecraft/world/3:/minecraft/world
-      - ./minecraft/logs/3:/minecraft/logs
+      - ./minecraft/world/1:/minecraft/world
+      - ./minecraft/logs/1:/minecraft/logs

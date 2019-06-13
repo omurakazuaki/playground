@@ -13,11 +13,11 @@ ecs-cli configure --cluster ${AWS_ECS_CLUSTER_NAME} --region ${AWS_DEFAULT_REGIO
 REPSITORIES=$( aws ecr describe-repositories --query 'repositories[*].repositoryName' )
 image=minecraft
 
-echo "### Start build Docker image ${image} ###"
+echo "### Start build Docker images ###"
 docker-compose build
 
 if [ `echo $REPSITORIES | grep ${image} | wc -l` -eq 0 ]; then
-  echo "### Create repository '${image}' ###"
+  echo "### Create repository ###"
   REPSITORY_ARM=$( aws ecr create-repository --repository-name ${image} --query 'repository.repositoryArn' )
   echo "### created repository '${REPSITORY_ARM}' ###"
   echo "### Set lifecycle policy ###"
@@ -25,6 +25,7 @@ if [ `echo $REPSITORIES | grep ${image} | wc -l` -eq 0 ]; then
 fi
 
 
-echo "### Push ${image} to ECR ###"
+echo "### Push images to ECR ###"
 ecs-cli push ${image}:1.12.2.forge
 ecs-cli push ${image}:1.14.2
+ecs-cli push ${image}:1.14.2.fabric

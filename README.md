@@ -1,6 +1,8 @@
 # build image
 
 ```sh
+$ cp minecraft/ops.txt.sample minecraft/ops.txt
+$ vi minecraft/ops.txt 
 $ docker-compose build
 ```
 
