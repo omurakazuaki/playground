@@ -14,13 +14,13 @@ jobs:
           name: Create ops.txt
           command: cp minecraft/ops.txt.sample minecraft/ops.txt
       - run:
-          name: Build minecraft images
+          name: Build minecraft image
           command: docker-compose build minecraft
       - run:
-          name: Build minecraft-forge images
+          name: Build minecraft-forge image
           command: docker-compose build minecraft-forge
       - run:
-          name: Build minecraft-fabric images
+          name: Build minecraft-fabric image
           command: docker-compose build minecraft-fabric
 
 workflows:
