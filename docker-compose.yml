@@ -19,7 +19,7 @@ services:
       context: ./minecraft
       dockerfile: Dockerfile.1.12.2.forge
     ports:
-      - 25566:25565
+      - 25565:25565
     volumes:
       - ./minecraft/world/2:/minecraft/world
       - ./minecraft/logs/2:/minecraft/logs
@@ -34,3 +34,13 @@ services:
     volumes:
       - ./minecraft/world/1:/minecraft/world
       - ./minecraft/logs/1:/minecraft/logs
+
+  ngrok:
+    build:
+      context: ./ngrok
+      dockerfile: Dockerfile
+      args:
+        NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN}
+    ports:
+      - 4040:4040
+    command: ./ngrok tcp ${NGROK_TARGET_SERVICE}:25565 --region ${NGROK_REGION} --log=stdout
