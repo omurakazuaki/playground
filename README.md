@@ -31,3 +31,9 @@ $ ./scripts/createService.sh
 # delete
 $ ./scripts/deleteService.sh
 ```
+
+### up local server
+
+```sh
+$ ./scripts/startLocalServer.sh
+```

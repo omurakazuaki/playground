@@ -1,4 +1,5 @@
 minecraft/world
 minecraft/logs
+minecraft/backup
 .env
 ops.txt
