@@ -20,5 +20,6 @@ COPY ops.txt ./
 
 # sample of mods addition
 ADD https://media.forgecdn.net/files/2714/302/journeymap-1.12.2-5.5.5b7.jar ./mods
+ADD https://media.forgecdn.net/files/2702/41/buildcraft-all-7.99.24.1.jar ./mods
 
 CMD java -Xmx1024M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
