@@ -3,7 +3,7 @@ version: '2'
 services:
 
   minecraft:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/minecraft:1.14.2.fabric
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/minecraft:1.14.4.fabric
     ports:
       - 25565:25565
     volumes:
@@ -14,24 +14,7 @@ services:
         awslogs-group: "/ecs/playground"
         awslogs-region: "${AWS_DEFAULT_REGION}"
         awslogs-stream-prefix: ecs
-    command: java -Xmx2048M -Xms1024M -jar ./fabric-server-launch.jar nogui
+    command: java -Xmx3584M -Xms3584M -jar ./fabric-server-launch.jar nogui
     volumes:
       - /minecraft/world/1:/minecraft/world
       - /minecraft/logs/1:/minecraft/logs
-
-  minecraft2:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/minecraft:1.12.2.forge
-    ports:
-      - 25566:25565
-    volumes:
-      - /minecraft/data2:/minecraft/data
-    logging:
-      driver: awslogs
-      options:
-        awslogs-group: "/ecs/playground"
-        awslogs-region: "${AWS_DEFAULT_REGION}"
-        awslogs-stream-prefix: ecs
-    command: java -Xmx2048M -Xms1024M -jar ./forge-1.12.2-14.23.5.2838-universal.jar nogui
-    volumes:
-      - /minecraft/world/2:/minecraft/world
-      - /minecraft/logs/2:/minecraft/logs

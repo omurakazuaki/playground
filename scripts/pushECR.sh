@@ -14,7 +14,7 @@ REPSITORIES=$( aws ecr describe-repositories --query 'repositories[*].repository
 image=minecraft
 
 echo "### Start build Docker images ###"
-docker-compose build
+#docker-compose build
 
 if [ `echo $REPSITORIES | grep ${image} | wc -l` -eq 0 ]; then
   echo "### Create repository ###"
@@ -28,4 +28,4 @@ fi
 echo "### Push images to ECR ###"
 ecs-cli push ${image}:1.12.2.forge
 ecs-cli push ${image}:1.14.2
-ecs-cli push ${image}:1.14.2.fabric
+ecs-cli push ${image}:1.14.4.fabric

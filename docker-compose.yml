@@ -25,10 +25,10 @@ services:
       - ./minecraft/logs/2:/minecraft/logs
 
   minecraft-fabric:
-    image: minecraft:1.14.2.fabric
+    image: minecraft:1.14.4.fabric
     build:
       context: ./minecraft
-      dockerfile: Dockerfile.1.14.2.fabric
+      dockerfile: Dockerfile.1.14.4.fabric
     ports:
       - 25565:25565
     volumes:

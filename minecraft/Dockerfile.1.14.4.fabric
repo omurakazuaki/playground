@@ -1,0 +1,31 @@
+FROM openjdk
+
+RUN mkdir -p /minecraft/data
+
+WORKDIR /minecraft
+
+ADD https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar ./
+ADD https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.1.37/fabric-installer-0.5.1.37.jar ./fabric-installer.jar
+
+RUN java -jar ./fabric-installer.jar server
+
+RUN java -Xmx1024M -Xms1024M -jar ./fabric-server-launch.jar nogui
+
+RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eula.txt
+
+COPY server.properties ./
+
+COPY ops.txt ./
+
+# sample of mods addition
+ADD https://edge.forgecdn.net/files/2810/785/fabric-api-0.4.1+build.245-1.14.jar ./mods
+ADD https://edge.forgecdn.net/files/2768/734/fabric-language-kotlin-1.3.50+build.1.jar ./mods
+ADD https://edge.forgecdn.net/files/2765/78/leaf-decay-1.1.0.jar ./mods
+ADD https://edge.forgecdn.net/files/2797/512/libblockattributes-all-0.5.0.jar ./mods
+ADD https://edge.forgecdn.net/files/2781/287/stockpile-1.1.2+1.14.4.jar ./mods
+ADD https://edge.forgecdn.net/files/2747/309/chunk-activator-1.2.0+mc1.14.4.jar ./mods
+ADD https://edge.forgecdn.net/files/2817/962/RebornCore-1.14.4-4.0.21+build.192.jar ./mods
+ADD  https://edge.forgecdn.net/files/2818/979/TechReborn-1.14.4-3.0.20+build.264.jar ./mods
+# ADD https://media.forgecdn.net/files/2724/884/cc-tweaked-1.14.2-1.83.1.jar ./mods
+
+CMD java -Xmx1024M -Xms1024M -jar ./fabric-server-launch.jar nogui
