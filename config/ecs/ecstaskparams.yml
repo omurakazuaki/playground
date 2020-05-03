@@ -1,5 +1,5 @@
 version: 1
 task_definition:
   task_size:
-    mem_limit: 3.2GB
-    mem_reservation: 3.2GB
+    mem_limit: 3.5GB
+    mem_reservation: 3.5GB

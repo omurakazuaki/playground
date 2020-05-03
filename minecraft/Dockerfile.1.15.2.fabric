@@ -1,0 +1,27 @@
+FROM openjdk
+
+RUN mkdir -p /minecraft/data
+
+WORKDIR /minecraft
+
+ADD https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar ./
+ADD https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.5.2.39/fabric-installer-0.5.2.39.jar ./fabric-installer.jar
+
+RUN java -jar ./fabric-installer.jar server
+
+RUN java -Xmx1024M -Xms1024M -jar ./fabric-server-launch.jar nogui
+
+RUN cp eula.txt eula.txt.bk &&  sed 's/eula=false/eula=true/' ./eula.txt.bk > eula.txt
+
+COPY server.properties ./
+
+COPY ops.txt ./
+
+# sample of mods addition
+ADD https://edge.forgecdn.net/files/2937/908/fabric-api-0.7.1+build.301-1.15.jar ./mods
+ADD https://edge.forgecdn.net/files/2843/142/fabric-language-kotlin-1.3.61+build.1.jar ./mods
+ADD https://edge.forgecdn.net/files/2827/905/leaf-decay-1.1.1.jar ./mods
+ADD https://edge.forgecdn.net/files/2876/348/libblockattributes-all-0.6.4.jar ./mods
+ADD https://edge.forgecdn.net/files/2846/959/stockpile-1.1.3+1.15.1.jar ./mods
+
+CMD java -Xmx1024M -Xms1024M -jar ./fabric-server-launch.jar nogui

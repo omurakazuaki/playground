@@ -1,5 +1,6 @@
 minecraft/world
 minecraft/logs
 minecraft/backup
+minecraft/crash-reports
 .env
 ops.txt

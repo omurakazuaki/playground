@@ -14,21 +14,22 @@ services:
       - ./minecraft/logs/1:/minecraft/logs
 
   minecraft-forge:
-    image: minecraft:1.12.2.forge
+    image: minecraft:1.15.2.forge
     build:
       context: ./minecraft
-      dockerfile: Dockerfile.1.12.2.forge
+      dockerfile: Dockerfile.1.15.2.forge
     ports:
       - 25565:25565
     volumes:
       - ./minecraft/world/2:/minecraft/world
       - ./minecraft/logs/2:/minecraft/logs
+      - ./minecraft/crash-reports/2:/minecraft/crash-reports
 
   minecraft-fabric:
-    image: minecraft:1.14.4.fabric
+    image: minecraft:1.15.2.fabric
     build:
       context: ./minecraft
-      dockerfile: Dockerfile.1.14.4.fabric
+      dockerfile: Dockerfile.1.15.2.fabric
     ports:
       - 25565:25565
     volumes:

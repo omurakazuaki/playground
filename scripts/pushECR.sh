@@ -8,7 +8,7 @@ fi
 
 ecs-cli configure --cluster ${AWS_ECS_CLUSTER_NAME} --region ${AWS_DEFAULT_REGION} --config-name ${AWS_ECS_CLUSTER_NAME}-config --default-launch-type ${AWS_ECS_LAUNCH_TYPE}
 
-`aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION`
+aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
 
 REPSITORIES=$( aws ecr describe-repositories --query 'repositories[*].repositoryName' )
 image=minecraft
@@ -26,6 +26,7 @@ fi
 
 
 echo "### Push images to ECR ###"
-ecs-cli push ${image}:1.12.2.forge
-ecs-cli push ${image}:1.14.2
-ecs-cli push ${image}:1.14.4.fabric
+#ecs-cli push ${image}:1.12.2.forge
+#ecs-cli push ${image}:1.14.2
+#ecs-cli push ${image}:1.14.4.fabric
+ecs-cli push ${image}:1.15.2.forge
